@@ -1,0 +1,80 @@
+.answer-box {
+    list-style-type: none;
+    margin: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background-color: #cacaca;
+    opacity: 0.8;            
+}
+.row{
+    margin-top:50px;
+}
+.parent {
+    display: flex;
+    flex-direction: column;
+    background: url(../images/aus.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 400px;
+}
+
+.item-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    height: 5px;
+    width: 150px;
+    padding-bottom: 45px;
+    margin: 5px;
+}
+.item-row>#tas { 
+    margin-left: -110px; 
+}
+
+.row{
+    display: flex;
+    flex-direction: row-reverse;
+}
+#ulStates li{
+    font-weight: bold;
+    font-size: 15px;
+}
+li:hover{
+    cursor:grab;
+    color: red;
+}
+li:active{
+    cursor:grabbing;
+}
+#ulStates{
+    list-style-type: none;
+}
+h1{
+    font-size: 60px;
+    font-weight: bold;
+}
+button{
+    margin: 6px;
+    color: black;
+    font-weight: bold;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+}
+#submit:hover{
+    background-color: green;
+    color: white;
+}
+#clear:hover{
+    background-color: red;
+    color: white;
+}
+h4{
+    font-weight: bold;
+    color: red;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="javascript/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+
+    <body>
+        <div class="container">
+          <div align="center">
+               <h1 >The Australian Quiz</h1>
+               <h4>Select the States/UTs from the list and place them inside the appropriate answer boxes within the map.</h4>
+           </div>
+            <div class="row">
+               <div class="col-sm-6">
+                    <div class="parent">
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item"></div>
+                            <div class="item"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item answer-box" id="nt"></div>
+                            <div class="item"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item answer-box" id="wa"></div>
+                            <div class="item"></div>
+                            <div class="item answer-box" id="qns"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item answer-box" id="sa"></div>
+                            <div class="item"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item"></div>
+                            <div class="item answer-box" id="nsw"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item"></div>
+                            <div class="item answer-box" id="vic"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item"></div>
+                            <div class="item"></div>
+                            <div class="item answer-box" id="tas"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                   <h2>List of States and Union Territories</h2>
+                    <ul id="ulStates">
+                        <li id="nsw" style="margin-top: 10px;">New South Wales</li>
+                        <li id="vic" style="margin-top: 10px;">Victoria</li>
+                        <li id="tas" style="margin-top: 10px;">Tasmania</li>
+                        <li id="nt" style="margin-top: 10px;">Northern Territory </li>
+                        <li id="sa" style="margin-top: 10px;">South Australia</li>
+                        <li id="wa" style="margin-top: 10px;">Western Australia</li>
+                        <li id="qns" style="margin-top: 10px;">Queensland</li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div>
+                <form align="center">
+                    <button id="submit" class="btn-warning">Submit</button>
+                    <button id="clear" class="btn-warning">Clear</button>
+                </form>
+            </div>
+        </div>
+    </body>
+    
+    <!--Quiz logic script-->
+    <script>
+        $(document).ready(function() {
+            var flag = 0;
+            $('#ulStates li').draggable({
+                helper: 'clone'
+            });
+
+            $('.answer-box').droppable({
+                drop: function(event, ui) {
+                    $(this).html(ui.draggable);
+                    if (this.id == $(ui.draggable).prop('id')) {
+                        flag++;
+                    } 
+                }
+            });
+
+            $('#submit').click(function() {
+                var score = flag+"\nAccuracy: "+(flag/7*100).toFixed(2);
+                alert((flag == 7) ? "CONGRATULATIONS!! You are eligible to become an Aussie.\nYour Score: "+score+"%\n\nPress OK to play again..." : "ALAS!! You are not eligible to become an Aussie.\nYour Score: "+score+"%\n\nPress OK to play again...");
+            });
+            $('#clear').click(function() {
+                window.location.reload();
+            });
+        });
+    </script>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AJAX Datatable</title>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    
+    <style>
+        .is-hidden {
+            display: none;
+        }
+        form{
+            margin-bottom: 20px;
+        }
+
+    </style>
+    
+</head>
+
+<body>
+<br/><br/>
+<div class="container">
+    <h1 align="center">Datatable</h1><br/>
+    <form>
+        <input type="text" id="srch"><br>
+        <button id="sub">Search</button>
+        <button id="reset">Reset</button>
+    </form>
+    <table id="data-table" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>login</th>
+            <th>id</th>
+            <th>node_Id</th>
+            <th>avatar-url</th>
+            <th>gravatar-url</th>
+            <th>url</th>
+            <th>html_url</th>
+            <th>followers_url</th>
+            <th>following_url</th>
+            <th>gists_url</th>
+            <th>starred_url</th>
+            <th>subscriptions_url</th>
+            <th>organizations_url</th>
+            <th>repos_url</th>
+            <th>events_url</th>
+            <th>received_events_url</th>
+            <th>type</th>
+            <th>site_admin</th>
+        </tr>
+        </thead>
+    </table>
+    <table id="data-table2" class="table table-bordered is-hidden">
+        <thead>
+        <tr>
+            <th>login</th>
+            <th>id</th>
+            <th>node_Id</th>
+            <th>avatar-url</th>
+            <th>gravatar-url</th>
+            <th>url</th>
+            <th>html_url</th>
+            <th>followers_url</th>
+            <th>following_url</th>
+            <th>gists_url</th>
+            <th>starred_url</th>
+            <th>subscriptions_url</th>
+            <th>organizations_url</th>
+            <th>repos_url</th>
+            <th>events_url</th>
+            <th>received_events_url</th>
+            <th>type</th>
+            <th>site_admin</th>
+            <th>name</th>
+            <th>company</th>
+            <th>blog</th>
+            <th>location</th>
+            <th>email</th><th>type</th>
+            <th>hireable</th>
+            <th>bio</th>
+            <th>public_repos</th>
+            <th>public_gists</th>
+            <th>followers</th>
+            <th>following</th><th>type</th>
+            <th>created_at</th>
+            <th>updated_at</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+
+        $('#data-table').DataTable({
+            "ajax": {
+                "url": "https://api.github.com/users",
+                "dataSrc": ""
+            },
+            "columns": [
+                {
+                    "data": "login"
+                },
+                {
+                    "data": "id"
+                },
+                {
+                    "data": "node_id"
+                },
+                {
+                    "data": "avatar_url"
+                },
+                {
+                    "data": "gravatar_id"
+                },
+                {
+                    "data": "url"
+                },
+                {
+                    "data": "html_url"
+                },
+                {
+                    "data": "followers_url"
+                },
+                {
+                    "data": "following_url"
+                },
+                {
+                    "data": "gists_url"
+                },
+                {
+                    "data": "starred_url"
+                },
+                {
+                    "data": "subscriptions_url"
+                },
+                {
+                    "data": "organizations_url"
+                },
+                {
+                    "data": "events_url"
+                },
+                {
+                    "data": "received_events_url"
+                },
+                {
+                    "data": "type"
+                },
+                {
+                    "data": "site_admin"
+                },
+                
+            ],
+            searching: false,
+        });
+
+        $('#sub').click(function (event) {
+            event.preventDefault();
+            var str = $('#srch').val();
+
+            $('#data-table').addClass('is-hidden');
+            $('#data-table2').removeClass('is-hidden');
+
+            $('#data-table2').DataTable({
+                "ajax": {
+                    "url": "https://api.github.com/users/" + str,
+                    "dataSrc": function (d) {
+                        return [d];
+                    },
+                },
+                "columns": [
+                    {
+                        "data": "login"
+                    },
+                    {
+                        "data": "id"
+                    },
+                    {
+                        "data": "node_id"
+                    },
+                    {
+                        "data": "avatar_url"
+                    },
+                    {
+                        "data": "gravatar_id"
+                    },
+                    {
+                        "data": "url"
+                    },
+                    {
+                        "data": "html_url"
+                    },
+                    {
+                        "data": "followers_url"
+                    },
+                    {
+                        "data": "following_url"
+                    },
+                    {
+                        "data": "gists_url"
+                    },
+                    {
+                        "data": "starred_url"
+                    },
+                    {
+                        "data": "subscriptions_url"
+                    },
+                    {
+                        "data": "organizations_url"
+                    },
+                    {
+                        "data": "events_url"
+                    },
+                    {
+                        "data": "received_events_url"
+                    },
+                    {
+                        "data": "type"
+                    },
+                    {
+                        "data": "site_admin"
+                    },
+                    {
+                        "data": "name"
+                    },
+                    {
+                        "data": "company"
+                    },
+                    {
+                        "data": "blog"
+                    },
+                    {
+                        "data": "location"
+                    },{
+                        "data": "email"
+                    },
+                    {
+                        "data": "hireable"
+                    },
+                    {
+                        "data": "bio"
+                    },
+                    {
+                        "data": "public_repos"
+                    },
+                    {
+                        "data": "public_gists"
+                    },
+                    {
+                        "data": "followers"
+                    },
+                    {
+                        "data": "following"
+                    },
+                    {
+                        "data": "created_at"
+                    },
+                    {
+                        "data": "updated_at"
+                    },
+                ],
+                searching: false,
+            });
+        });
+
+        $('#reset').click(function (event) {
+        	event.preventDefault();
+        	location.reload();
+        });
+
+    });
+
+</script>
